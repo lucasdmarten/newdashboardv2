@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <form class="form-group" action="/home/loginpage/" method="post">
+          {% csrf_token %}
+          <div class="column  mx-6">
+            <div class="column my-6" style="list-style-type:none;">
+                <ul class="list-social-media" style="display:flex;flex-direction:row">
+                    <a class="link-social-media" href="#">
+                        <li class="item-social-media" style="margin-right:20px">
+                          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </li>
+                    </a>
+                    <a class="link-social-media" href="#">
+                        <li class="item-social-media" style="margin-right:20px">
+                          <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+                        </li>
+                    </a>
+                    <a class="link-social-media" href="#">
+                        <li class="item-social-media" style="margin-right:20px">
+                          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+
+            <!-- USERNAME -->
+            <div class="field">
+              <label class="label">Username</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input is-success" type="text" name="username" placeholder="Text input" value="bulma">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </div>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input is-danger" type="password" name="password" placeholder="Password input" value="">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </div>
+            </div>
+
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-link">Login</button>
+              </div>
+              {% for message in messages %}
+              {% if message is not None %}
+              <p><strong>{{message}}</strong></p>
+              <a href="/home/registerpage/"><button class="btn btn-secondary">registrar</button></a>
+              {% endif %}
+              {% endfor %}
+              {{erro}}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+
+{% endblock %}

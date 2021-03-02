@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load plotly_dash %}
+
+{% if user.is_authenticated %}
+
+    <div class="{% plotly_class name='SimpleExample' %} card" style="width:100%; height:100%;">
+    {% plotly_app name='SimpleExample' ratio=0.65 %}
+    </div>
+
+{% endif %}
+
+{% endblock %}

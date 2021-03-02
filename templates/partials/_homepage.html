@@ -1,0 +1,51 @@
+{% load static %}
+<!--SECTION 1-->
+<section class="section">
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class="column is-3">
+                <h1 class="is-size-1 title">Título</h1>
+                <h2 class="is-size-2 subtitle">Subtitulo</h2>
+                <p>Descrição</p>
+            </div>
+            <div class="column is-5 has-text-centered">
+                <img src="{% static 'img/grafico.png' %}" alt="grafico" class="px-6" >
+            </div>
+            <div class="column is-5">
+                <img src="{% static 'img/grafico.png' %}" alt="grafico" class="px-6" >
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--SECTION 2-->
+<section class="section">
+    <div class="container">
+        <div class="column is-vcentered is-10 is-variable ">
+            <div class="column is-9-tablet">
+            <!-- tabbed content-->
+                <div class="tab is-boxed">
+                    <ul style="display:flex; padding-bottom:20px">
+                        <li class="is-active">
+                            <a class="button is-active" data-target="product details">product detail</a>
+                        </li>
+                        <li class="is-active">
+                            <a class="button" data-target="delivery-information">delivery information</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="px-2" id="tab content">
+                    <div id="product details" >
+                        <h3 class="title">Product Details</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, architecto, cumque eaque earum in inventore iste magnam minima molestias nesciunt pariatur porro quam qui quos sapiente sequi tenetur vitae voluptate!</p>
+                    </div>
+                    <div id="delivery-information" class="is-hidden">
+                        <h3 class="title">Delivery Information</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus delectus facere. Beatae dolor explicabo fugit iusto magnam quas repellendus, saepe temporibus voluptate. Consequuntur ea hic nihil odit officiis, reprehenderit.</p>
+                    </div>
+                    <img src="{% static 'img/logo.jpg' %}" alt="logo"  style="max-height: 100px" class="py-2 px-2">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+  <head>
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+
+
+    <meta charset="utf-8">
+    <title></title>
+
+  </head>
+
+  <body>
+      <!--    NAVBAR    -->
+      {% include 'partials/_navbar.html' %}
+
+
+      <!--    BREADCRUMBS-->
+      <div class="section pt-4 pb-0">
+          <nav class="breadcrumb has-bullet-separator">
+              <ul class="container">
+                  <li>LINK</li>
+                  <li>LINK</li>
+              </ul>
+          </nav>
+      </div>
+
+      <!--    HOMEPAGE-->
+
+          {% block content %}
+          {% endblock %}
+
+
+  </body>
+</html>
