@@ -1,2 +1,1 @@
-web: gunicorn contatos_base.wsgi
-
+web: gunicorn dashboard:app --log-file -
