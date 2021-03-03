@@ -1,8 +1,15 @@
+# Python
 *.pyc
-venv
+*~
+__pycache__
+
+# Env
 .env
-__pycache__/
-*.db
-local_settings.py
-staticfiles
-*.sqlite3
+venv/
+
+# Database
+db.sqlite3
+
+# Static folder at project root
+/static/
+/staticfiles/
