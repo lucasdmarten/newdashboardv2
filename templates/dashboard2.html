@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<style>
+    .container-fluid {
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    .input {
+        width: 50%;
+    }
+    .form-group {
+        padding: 15px;
+    }
+    section {
+        padding-top: 100px;
+    }
+</style>
+<section class="section">
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class="column is-8">
+                <h1 class="is-size-1 title">Calculo de retorno</h1>
+                <h2 class="is-size-2 subtitle">Simule seu investimento aqui!</h2>
+                <p>Escolha um valor inicial para começar a investir nos robôs da Turtle, mande sua proposta para nós.</p>
+            </div>
+            <form class="form-group" action="/home/dashboard/" method="post">
+                {% csrf_token %}
+                <div class="field">
+                  <label class="label">Investimento inicial</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input class="input is-success" type="number" name="valor" value=1>
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-dollar-sign"></i>
+                    </span>
+                    <button class="button is-success is-light">OK</button>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% if condicao == True %}
+<div class="container-fluid" style="padding: 100px">
+    <div class="row">
+        <canvas id="myChart" width="800"></canvas>
+    </div>
+    <p style="padding:50px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos error expedita facilis fugit laudantium sint voluptatibus! Asperiores deleniti eos ipsa ipsam maxime, non nostrum optio porro possimus voluptatibus. Modi, tempora!</p>
+    <div class="row" style="padding-top: 50px">
+        <canvas id="myChart2" width="800"></canvas>
+    </div>
+</div>
+{% else %}
+<p style="padding:50px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos error expedita facilis!</p>
+{% endif %}
+<hr>
+
+<!--<div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--        <canvas id="myChart" width="400"></canvas>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <canvas id="myChart2" width="900"></canvas>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<script>
+
+var ctx = document.getElementById('myChart');
+var ctx2 = document.getElementById('myChart2');
+var myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{ data|safe }},
+        datasets: [{
+            label: 'Bot 1: Taxa de ganho',
+            data: {{ retorno_acumulado|safe }},
+            backgroundColor: [
+                {% for i in tamanho|get_range %}
+                    'rgba(75, 192, 192, 0.8)',
+                {% endfor %}
+
+            ],
+            borderColor: [
+                 {% for i in tamanho|get_range %}
+                    'rgba(75, 192, 192, 0.2)',
+                 {% endfor %}
+            ],
+            borderWidth: 1
+
+        }]
+    }
+});
+var myLineChart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: {{ data|safe }},
+        datasets: [{
+            label: 'Robo 1: Taxa de ganho',
+            data: {{ retorno_acumulado|safe }},
+            backgroundColor: [
+                {% for i in tamanho|get_range %}
+                    'rgba(75, 192, 192, 0.8)',
+                {% endfor %}
+            ]
+        }]
+    }
+});
+</script>
+{% endblock %}

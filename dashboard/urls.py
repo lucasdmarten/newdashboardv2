@@ -24,6 +24,7 @@ urlpatterns = [
     path('loginpage/', views.loginpage, name='loginpage'),
     path('logout/', views.userlogout, name='logout'),
     path('dashboard/', views.userpage, name='dashboard'),
+    path('dashboard2/', views.userpage2, name='dashboard2'),
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
     path('erropage/', views.erropage, name='erropage'),
     path('okpage/', views.okpage, name='okpage'),

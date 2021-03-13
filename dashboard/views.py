@@ -3,10 +3,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+import pandas as pd
 # Create your views here.
 def homepage(request):
-    return render(request,'base.html')
+    return render(request,'_homepage.html')
 def erropage(request):
     return render(request,'erro.html')
 def okpage(request):
@@ -55,6 +55,41 @@ def userlogout(request):
     logout(request)
     return redirect('home')
 
+
 @login_required
 def userpage(request):
     return render(request, 'dashboard.html')
+@login_required
+def userpage2(request):
+    from django.template.defaulttags import register
+    from django.contrib.staticfiles.storage import staticfiles_storage
+    directorio = staticfiles_storage.location + '/dados/dado.csv'
+    data = pd.read_csv(directorio)
+    data['date'] = data.iloc[:, 0]
+    ret = data['retorno_acumu'].tolist()
+    dat = data['date'].tolist()
+    condicao = None
+
+    @register.filter
+    def get_range(value):
+        return range(value)
+
+
+    tamanho = len(dat)
+    if request.method == "POST":
+        valor = float(request.POST.get('valor'))
+        if valor <= 0:
+            return redirect('erropage')
+        retorno_multiplicado = []
+        for x in ret:
+            y = x * valor
+            retorno_multiplicado.append(y)
+        ret = retorno_multiplicado
+        condicao = True
+        return render(request, 'dashboard2.html',
+                      dict(retorno_acumulado=ret[-500:], data=dat[-500:], tamanho=tamanho, condicao=condicao))
+
+    return render(request, 'dashboard2.html',
+                  dict(retorno_acumulado=ret[-500:], data=dat[-500:], tamanho=tamanho, condicao=condicao))
+
+
