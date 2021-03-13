@@ -30,7 +30,8 @@
                 <h2 class="is-size-2 subtitle">Simule seu investimento aqui!</h2>
                 <p>Escolha um valor inicial para começar a investir nos robôs da Turtle, mande sua proposta para nós.</p>
             </div>
-            <form class="form-group" action="/home/dashboard/" method="post">
+            <fieldset>
+                <form class="form-group" action="/home/dashboard2/" method="post">
                 {% csrf_token %}
                 <div class="field">
                   <label class="label">Investimento inicial</label>
@@ -43,6 +44,7 @@
                   </div>
                 </div>
             </form>
+            </fieldset>
         </div>
     </div>
 </section>
