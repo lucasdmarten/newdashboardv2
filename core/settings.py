@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-import django_heroku
 
 
 import os
@@ -26,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'mgdu5^pbz5hc0))b%sqgcbay$lid9&&t@jjvl*9sv(7&fyb=-v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['https://dash-django.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1','212.1.214.108','biturtle.tech']
 
 
 # Application definition
@@ -86,10 +85,13 @@ ASGI_APPLICATION = 'dashboard.routing.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+		'read_default_file': './.env',  #'/etc/mysql/my.cnf',
+	},
     }
 }
+
 
 
 # Password validation
@@ -161,4 +163,4 @@ STATICFILES_LOCATION = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'dashboard/static/')
 ]
-django_heroku.settings(locals())
+
